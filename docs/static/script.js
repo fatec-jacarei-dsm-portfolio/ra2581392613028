@@ -23,12 +23,12 @@ const i18n = {
     ],
     "skills": {
       "Linguagens": {
-        icons: "javascript,typescript,python,dart,php,cs,cpp",
-        names: ["JavaScript","TypeScript","Python","Dart","PHP","C#","C++"]
+        icons: "javascript,typescript,rust,python,dart,php,cs,cpp",
+        names: ["JavaScript","TypeScript","Rust","Python","Dart","PHP","C#","C++"]
       },
       "Frameworks & Libs": {
-        icons: "flutter,react,nodejs,flask,electron,dotnet,qt",
-        names: ["Flutter","React","Node.js","Flask","Electron",".NET","Qt"]
+        icons: "flutter,react,tauri,nodejs,flask,electron,dotnet,qt",
+        names: ["Flutter","React","Tauri","Node.js","Flask","Electron",".NET","Qt"]
       },
       "Banco de Dados": {
         icons: "postgres,mysql",
@@ -89,12 +89,12 @@ const i18n = {
     ],
     "skills": {
       "Languages": {
-        icons: "javascript,typescript,python,dart,php,cs,cpp",
-        names: ["JavaScript","TypeScript","Python","Dart","PHP","C#","C++"]
+        icons: "javascript,typescript,python,dart,php,cs,cpp,rust",
+        names: ["JavaScript","TypeScript","Python","Dart","PHP","C#","C++","Rust"]
       },
       "Frameworks & Libraries": {
-        icons: "flutter,react,nodejs,flask,electron,dotnet,qt",
-        names: ["Flutter","React","Node.js","Flask","Electron",".NET","Qt"]
+        icons: "flutter,react,nodejs,flask,electron,dotnet,qt,tauri",
+        names: ["Flutter","React","Node.js","Flask","Electron",".NET","Qt","Tauri"]
       },
       "Databases": {
         icons: "postgres,mysql",
