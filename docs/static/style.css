@@ -109,6 +109,27 @@ justify-content:space-between;
 
 .sidebar-top{}
 
+.identity-header{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:20px;
+}
+.identity-header .name{font-size:2.1rem;min-width:0}
+
+.profile-photo{
+width:92px;
+height:92px;
+flex:0 0 92px;
+display:block;
+object-fit:cover;
+object-position:center;
+border-radius:50%;
+border:2px solid var(--border-accent);
+box-shadow:0 0 0 5px var(--accent-dim);
+transition:border-color 0.3s,box-shadow 0.3s;
+}
+
 .name{
 font-family:'Space Mono',monospace;
 font-size:2.4rem;
@@ -542,6 +563,8 @@ body{cursor:auto}
 }
 
 @media(max-width:480px){
+.identity-header{justify-content:flex-start}
+.profile-photo{width:80px;height:80px;flex-basis:80px}
 .project-tabs{flex-wrap:wrap}
 .project-tab{flex:1;padding-left:10px;padding-right:10px}
 .project-modal{padding:12px}

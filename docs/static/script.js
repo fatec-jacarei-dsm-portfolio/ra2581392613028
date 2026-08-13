@@ -174,6 +174,34 @@ Object.assign(i18n.en, {
 const projects = {
   academic: [
     {
+      id: "raintrack",
+      title: "RainTrack",
+      context: { pt: "TCC do Ensino Médio Técnico · ETEC SJC", en: "Technical High School Capstone · ETEC SJC" },
+      summary: {
+        pt: "Sistema de monitoramento meteorológico em tempo real com estação baseada em ESP32 e dashboard web.",
+        en: "Real-time weather monitoring system with an ESP32-based station and web dashboard."
+      },
+      description: {
+        pt: "O RainTrack foi desenvolvido como meu Trabalho de Conclusão de Curso do Ensino Médio Técnico em Desenvolvimento de Sistemas pela ETEC de São José dos Campos. O sistema coleta dados de temperatura, umidade e precipitação por meio de sensores conectados a um ESP32, envia as medições via MQTT, armazena os dados em MySQL e os apresenta em um dashboard web interativo.",
+        en: "RainTrack was developed as my capstone project for the Technical High School program in Systems Development at ETEC São José dos Campos. The system collects temperature, humidity, and precipitation data through sensors connected to an ESP32, sends the readings via MQTT, stores them in MySQL, and displays them in an interactive web dashboard."
+      },
+      contribution: {
+        pt: "Desenvolvi a solução de ponta a ponta, integrando o firmware do ESP32, a comunicação com o broker Eclipse Mosquitto, o back-end em Flask, a persistência em MySQL e a interface web para visualização e administração das estações e medições.",
+        en: "I developed the end-to-end solution, integrating the ESP32 firmware, communication with the Eclipse Mosquitto broker, the Flask back end, MySQL persistence, and the web interface for viewing and managing stations and readings."
+      },
+      technologies: ["Python", "Flask", "ESP32", "MQTT", "MySQL", "HTML", "CSS", "JavaScript", "Highcharts"],
+      repository: "https://github.com/igorcsouzaa/RainTrack",
+      images: [
+        {
+          src: "assets/raintrack.png",
+          alt: {
+            pt: "Dashboard do RainTrack exibindo gráficos de temperatura e umidade de uma estação meteorológica",
+            en: "RainTrack dashboard showing temperature and humidity charts from a weather station"
+          }
+        }
+      ]
+    },
+    {
       id: "team-zero-dsm",
       title: "Team-Zero-DSM",
       context: { pt: "Projeto ABP · 1º semestre", en: "Project-Based Learning · 1st semester" },
@@ -473,16 +501,38 @@ document.getElementById('themeBtn').addEventListener('click',()=>{
 // Nav active state
 const sections = document.querySelectorAll('section');
 const navItems = document.querySelectorAll('.nav-item');
-const observer = new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      navItems.forEach(n=>n.classList.remove('active'));
-      const active = document.querySelector(`.nav-item[href="#${e.target.id}"]`);
-      if(active) active.classList.add('active');
-    }
+let navUpdatePending = false;
+
+function updateActiveNav(){
+  navUpdatePending = false;
+  const sectionsList = [...sections];
+  const isNearPageBottom = window.scrollY + window.innerHeight >=
+    document.documentElement.scrollHeight - 80;
+  const activeSection = isNearPageBottom
+    ? sectionsList.at(-1)
+    : sectionsList.find(section=>{
+    const rect = section.getBoundingClientRect();
+    return rect.bottom > 0 && rect.top < window.innerHeight;
   });
-},{threshold:0.3});
-sections.forEach(s=>observer.observe(s));
+
+  if(!activeSection) return;
+
+  navItems.forEach(item=>{
+    item.classList.toggle(
+      'active',
+      item.getAttribute('href') === `#${activeSection.id}`
+    );
+  });
+}
+
+function scheduleActiveNavUpdate(){
+  if(navUpdatePending) return;
+  navUpdatePending = true;
+  requestAnimationFrame(updateActiveNav);
+}
+
+window.addEventListener('scroll',scheduleActiveNavUpdate,{passive:true});
+window.addEventListener('resize',scheduleActiveNavUpdate);
  
 // Custom cursor
 const cursor = document.getElementById('cursor');
@@ -506,3 +556,4 @@ document.querySelectorAll('a,button,.exp-card,.cert-card,.skill-badge').forEach(
  
 // Init
 renderContent('pt');
+updateActiveNav();
