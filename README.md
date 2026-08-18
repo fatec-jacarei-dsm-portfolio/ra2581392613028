@@ -6,5 +6,5 @@
 ---
 
 ### Portfólio Online  
-🔗 [Acesse o Portfólio](https://igorsouzadev.vercel.app)
+🔗 [Acesse o Portfólio](https://fatec-jacarei-dsm-portfolio.github.io/ra2581392613028/)
 🎤 [Pitch de Apresentação (vídeo)](#)
